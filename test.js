@@ -47,6 +47,16 @@ class Bootcamp {
   numGrades(student) {
     return this.grades[student].length;
   }
+
+  averageGrade(student) {
+    if (!this.isEnrolled(student)) return null;
+    const grades = this.getGrades(student);
+    return (
+      grades.reduce((acc, cur) => {
+        return acc + cur;
+      }, 0) / grades.length
+    );
+  }
 }
 
 /*
@@ -81,20 +91,21 @@ bootcamp.addGrade('Alice', 42);
 bootcamp.addGrade('Alice', 100);
 */
 
-const bootcamp2 = new Bootcamp(
+const bootcamp = new Bootcamp(
   'Map Academy',
   'Anyone can be a cartographer.',
   6
 );
-bootcamp2.enroll('Alice');
-bootcamp2.enroll('Bob');
-console.log(JSON.stringify(bootcamp2));
-console.log(bootcamp2.addGrade('Alice', 100));
-console.log(bootcamp2.addGrade('Alice', 75));
-console.log(bootcamp2.addGrade('Bob', 87));
-console.log(bootcamp2.addGrade('Bry', 87));
-
-console.log(bootcamp2.numGrades('Alice'));
-
-console.log(bootcamp2.numGrades('Bob'));
-console.log(JSON.stringify(bootcamp2));
+bootcamp.enroll('Alice');
+bootcamp.enroll('Bob');
+console.log(JSON.stringify(bootcamp));
+console.log(bootcamp.addGrade('Alice', 100));
+console.log(bootcamp.addGrade('Alice', 75));
+console.log(bootcamp.addGrade('Bob', 80));
+console.log(bootcamp.addGrade('Bry', 99));
+console.log(bootcamp.numGrades('Alice'));
+console.log(bootcamp.numGrades('Bob'));
+console.log(bootcamp.averageGrade('Alice'));
+console.log(bootcamp.averageGrade('Bob'));
+console.log(bootcamp.averageGrade('Bry'));
+console.log(JSON.stringify(bootcamp));
